@@ -2,6 +2,7 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime, timedelta
 import re
 import json
@@ -50,27 +51,28 @@ def main(urlList):
             job_name_text = job_name.text
             job_location = driver.find_element(By.XPATH, "//*[@id='header']/div")
             job_location_text = job_location.text
-            script_tag = driver.find_element(By.XPATH, "//script[@type='application/ld+json']")
-            script_content = script_tag.get_attribute('innerHTML')
-            json_data = json.loads(script_content)
-            date_posted = json_data.get('datePosted')
-
-            # Color Coding
-            current_date = datetime.now().date()
-            difference = current_date - datetime.strptime(date_posted, "%Y-%m-%d").date()
-            one_week = timedelta(weeks=1)
-            two_weeks = timedelta(weeks=2)
-            if difference <= one_week:
-                color_code = color.GREEN
-            elif difference <= two_weeks:
-                color_code = color.YELLOW
-            else:
-                color_code = color.RED
-
-            # Print Results
-            print(f'\n>>> {job_name_text}: --- posted: {color_code}{date_posted}{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
-    except Exception as e:
-        print("Error:", e)
+            try:
+                script_tag = driver.find_element(By.XPATH, "//script[@type='application/ld+json']")
+                script_content = script_tag.get_attribute('innerHTML')
+                json_data = json.loads(script_content)
+                date_posted = json_data.get('datePosted')
+                if date_posted is not None:
+                    current_date = datetime.now().date()
+                    difference = current_date - datetime.strptime(date_posted, "%Y-%m-%d").date()
+                    one_week = timedelta(weeks=1)
+                    two_weeks = timedelta(weeks=2)
+                    if difference <= one_week:
+                        color_code = color.GREEN
+                    elif difference <= two_weeks:
+                        color_code = color.YELLOW
+                    else:
+                        color_code = color.RED
+                    # Print Results
+                    print(f'\n>>> {job_name_text}: --- posted: {color_code}{date_posted}{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
+                else:
+                    print(f'\n>>> {job_name_text}: --- posted: {color_code}"No Date"{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
+            except NoSuchElementException: 
+                print(f'\n>>> {job_name_text}: --- posted: {color_code}No Post Date Available{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
     finally:
         print('------------------------')
         driver.quit()
