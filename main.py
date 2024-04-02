@@ -43,6 +43,7 @@ def getOpenings(jobBoard):
 
 def main(urlList):
     try:
+        # Iterate through urlList, extract text and datePosted from JSON
         for job_link in urlList:
             driver.get(job_link)
             job_name = driver.find_element(By.XPATH, "//*[@id='header']/h1")
@@ -52,6 +53,7 @@ def main(urlList):
             json_data = json.loads(script_content)
             date_posted = json_data.get('datePosted')
 
+            # Color Coding
             current_date = datetime.now().date()
             difference = current_date - datetime.strptime(date_posted, "%Y-%m-%d").date()
             one_week = timedelta(weeks=1)
@@ -63,6 +65,7 @@ def main(urlList):
             else:
                 color_code = color.RED
 
+            # Print Results
             print(f'\n>>> {job_name_text}: --- posted: {color_code}{date_posted}{color.END} \n>>> {job_link}')
     except Exception as e:
         print("Error:", e)
