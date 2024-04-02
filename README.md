@@ -41,7 +41,15 @@
 - _Selenium_
 
 ## Description:
-Scrapes Greenhouse.io job careers pages and prints the date the job was posted
+Scrapes Greenhouse.io job careers pages and prints the date the job was posted. Examples:
+- https://boards.greenhouse.io/kallesgroup
+- https://boards.greenhouse.io/energysolutions
+- https://boards.greenhouse.io/arcadiacareers
+- https://boards.greenhouse.io/harrys
+- https://boards.greenhouse.io/1800contacts
+- https://boards.greenhouse.io/archrival
+- https://boards.greenhouse.io/colehourcoheninc/
+
 
 ## Setup/Installation Requirements:
 ### Run Locally:
