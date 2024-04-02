@@ -27,8 +27,6 @@
 
 #### By _**Marcus Kyung**_
 
-#### _Greenhouse.io Date Posted Scraper_
-
 ## Contents:
 
 - [Technologies Used](#technologies-used)
