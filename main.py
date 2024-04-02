@@ -48,6 +48,8 @@ def main(urlList):
             driver.get(job_link)
             job_name = driver.find_element(By.XPATH, "//*[@id='header']/h1")
             job_name_text = job_name.text
+            job_location = driver.find_element(By.XPATH, "//*[@id='header']/div")
+            job_location_text = job_location.text
             script_tag = driver.find_element(By.XPATH, "//script[@type='application/ld+json']")
             script_content = script_tag.get_attribute('innerHTML')
             json_data = json.loads(script_content)
@@ -66,7 +68,7 @@ def main(urlList):
                 color_code = color.RED
 
             # Print Results
-            print(f'\n>>> {job_name_text}: --- posted: {color_code}{date_posted}{color.END} \n>>> {job_link}')
+            print(f'\n>>> {job_name_text}: --- posted: {color_code}{date_posted}{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
     except Exception as e:
         print("Error:", e)
     finally:
