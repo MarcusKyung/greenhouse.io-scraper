@@ -58,8 +58,9 @@ Scrapes Greenhouse.io job careers pages and prints the date the job was posted. 
 3. Run using terminal
 
 ## Known Bugs:
-- Only works on specifically formatted greenhouse.io pages
-- No error handling
+- Script doesn't work on employer site embedded greenhouse.io pages like this one: https://www.airship.com/company/careers/
+- Script doesn't work on non-standard greenhouse.io page like this one: https://boards.greenhouse.io/alma because the job title is formatted in a non-standard method
+- Minimal error handling
 
 ## Contact:
 _For questions, comments, or concerns please reach out at Kyungmj@gmail.com_
