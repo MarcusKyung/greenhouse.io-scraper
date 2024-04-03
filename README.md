@@ -27,6 +27,8 @@
 
 #### By _**Marcus Kyung**_
 
+#### Program to scrape Lever and Greenhouse.io job pages in order to see open positions and when they were posted
+
 ## Contents:
 
 - [Technologies Used](#technologies-used)
@@ -49,18 +51,23 @@ Scrapes Greenhouse.io job careers pages and prints the date the job was posted. 
 - https://boards.greenhouse.io/1800contacts
 - https://boards.greenhouse.io/archrival
 - https://boards.greenhouse.io/colehourcoheninc/
+- https://jobs.lever.co/pigment
+- https://jobs.lever.co/coforma
+- https://jobs.lever.co/smarsh
 
 
 ## Setup/Installation Requirements:
 ### Run Locally:
 1. Clone this repository to a local machine with Python. Install Selenium
-2. Input Greenhouse.io careers page you wish to scrape. Must be a https://boards.greenhouse.io/XYZ careers page. Cannot be custom or embedded job listings
+2. Input Lever or Greenhouse.io careers page you wish to scrape. Must be a https://boards.greenhouse.io/XYZ careers page or https://jobs.lever.co/XYZ. Cannot be custom or embedded job listings.
 3. Run using terminal
 
-## Known Bugs:
-- Script doesn't work on employer site embedded greenhouse.io pages like this one: https://www.airship.com/company/careers/
+## Known Bugs/Issues:
+- Script doesn't work on employer site embedded greenhouse.io pages like this one: https://www.airship.com/company/careers/. In this instance a standard greenhouse.io page is available here: https://boards.greenhouse.io/airship, but this is not always the case
 - Script doesn't work on non-standard greenhouse.io page like this one: https://boards.greenhouse.io/alma because the job title is formatted in a non-standard method
-- Minimal error handling
+- Script error handling not working for some jobs pages: https://boards.greenhouse.io/designitnorthamerica. Needs to return a blanket exception when no script detected
+- Needs more error handling
+- Finding elements by XPATH seems iffy.
 
 ## Contact:
 _For questions, comments, or concerns please reach out at Kyungmj@gmail.com_
