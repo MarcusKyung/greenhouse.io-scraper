@@ -59,7 +59,7 @@ Scrapes Greenhouse.io job careers pages and prints the date the job was posted. 
 ## Setup/Installation Requirements:
 ### Run Locally:
 1. Clone this repository to a local machine with Python. Install Selenium
-2. Input Lever or Greenhouse.io careers page you wish to scrape. Must be a https://boards.greenhouse.io/XYZ careers page or https://jobs.lever.co/XYZ. Cannot be custom or embedded job listings.
+2. Input Lever or Greenhouse.io careers page you wish to scrape. Must be a https://boards.greenhouse.io/XYZ careers page or https://jobs.lever.co/XYZ. Cannot be custom or embedded job listings. Users can add optional relevant query string filers formatted like the following ex: ?location=Melbourne . Lever offers the following query strings: Location Type, Location, Team, Work Type. Greenhouse does not offer filtering by query string. 
 3. Run using terminal
 
 ## Known Bugs/Issues:
