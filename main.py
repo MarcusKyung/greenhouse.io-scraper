@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime, timedelta
+import time
 import re
 import json
 
@@ -38,7 +39,7 @@ def getOpenings(jobBoard):
     jobLinks = driver.find_elements(By.TAG_NAME, 'a')
     for link in jobLinks:
         href = link.get_attribute('href')
-        if href and 'job' in href:
+        if 'job' in href:
             urlList.append(href)
     return urlList
 
@@ -56,27 +57,28 @@ def main(urlList):
                 script_content = script_tag.get_attribute('innerHTML')
                 json_data = json.loads(script_content)
                 date_posted = json_data.get('datePosted')
-                if date_posted is not None:
-                    current_date = datetime.now().date()
-                    difference = current_date - datetime.strptime(date_posted, "%Y-%m-%d").date()
-                    one_week = timedelta(weeks=1)
-                    two_weeks = timedelta(weeks=2)
-                    if difference <= one_week:
-                        color_code = color.GREEN
-                    elif difference <= two_weeks:
-                        color_code = color.YELLOW
-                    else:
-                        color_code = color.RED
-                    # Print Results
-                    print(f'\n>>> {job_name_text}: --- posted: {color_code}{date_posted}{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
+                current_date = datetime.now().date()
+                difference = current_date - datetime.strptime(date_posted, "%Y-%m-%d").date()
+                one_week = timedelta(weeks=1)
+                two_weeks = timedelta(weeks=2)
+                if difference <= one_week:
+                    color_code = color.GREEN
+                elif difference <= two_weeks:
+                    color_code = color.YELLOW
                 else:
-                    print(f'\n>>> {job_name_text}: --- posted: {color_code}"No Date"{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
+                    color_code = color.RED
+                print(f'\n>>> {job_name_text}: --- posted: {color_code}{date_posted}{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
             except NoSuchElementException: 
-                print(f'\n>>> {job_name_text}: --- posted: {color_code}No Post Date Available{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
+                print(f'\n>>> {job_name_text}: --- posted: {color.RED}No Post Date Available{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
     finally:
         print('------------------------')
         driver.quit()
 
+
 careerPage = getCompany()
+start_selenium = time.time()
 getOpenings(careerPage)
 main(urlList)
+end_selenium = time.time()
+selenium_time = end_selenium - start_selenium
+print(f'Selenium Script took {selenium_time} seconds to execute.')
