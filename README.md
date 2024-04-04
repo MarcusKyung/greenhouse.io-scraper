@@ -1,4 +1,4 @@
-# _Greenhouse.io Date Posted Scraper_
+# _Greenhouse.io Job Scraper_
 
 <div align="center">
     <!-- Project Shields -->
@@ -27,7 +27,7 @@
 
 #### By _**Marcus Kyung**_
 
-#### Program to scrape Lever and Greenhouse.io job pages in order to see open positions and when they were posted
+#### Selenium and Beautiful Soup scripts made to scrape Lever and Greenhouse.io job pages in order to see open positions and when they were posted
 
 ## Contents:
 
@@ -64,8 +64,7 @@ Scrapes Greenhouse.io job careers pages and prints the date the job was posted. 
 
 ## Known Bugs/Issues:
 - Script doesn't work on employer site embedded greenhouse.io pages like this one: https://www.airship.com/company/careers/. In this instance a standard greenhouse.io page is available here: https://boards.greenhouse.io/airship, but this is not always the case
-- Script doesn't work on non-standard greenhouse.io page like this one: https://boards.greenhouse.io/alma because the job title is formatted in a non-standard method. It is not in an h1, rather it is in a p tag and bolded
-- Finding elements by XPATH seems iffy
+- Script doesn't work on non-standard greenhouse.io page like this one: https://boards.greenhouse.io/alma because the job title is formatted in a non-standard method. It is not in an h1, rather it is in a p tag and bolded. This script works only when page formatting is programatically generated. 
 
 ## Contact:
 _For questions, comments, or concerns please reach out at Kyungmj@gmail.com_
