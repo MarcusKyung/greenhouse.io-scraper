@@ -64,10 +64,8 @@ Scrapes Greenhouse.io job careers pages and prints the date the job was posted. 
 
 ## Known Bugs/Issues:
 - Script doesn't work on employer site embedded greenhouse.io pages like this one: https://www.airship.com/company/careers/. In this instance a standard greenhouse.io page is available here: https://boards.greenhouse.io/airship, but this is not always the case
-- Script doesn't work on non-standard greenhouse.io page like this one: https://boards.greenhouse.io/alma because the job title is formatted in a non-standard method
-- Script error handling not working for some jobs pages: https://boards.greenhouse.io/designitnorthamerica. Needs to return a blanket exception when no script detected
-- Needs more error handling
-- Finding elements by XPATH seems iffy.
+- Script doesn't work on non-standard greenhouse.io page like this one: https://boards.greenhouse.io/alma because the job title is formatted in a non-standard method. It is not in an h1, rather it is in a p tag and bolded
+- Finding elements by XPATH seems iffy
 
 ## Contact:
 _For questions, comments, or concerns please reach out at Kyungmj@gmail.com_

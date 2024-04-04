@@ -43,35 +43,41 @@ def getOpenings(jobBoard):
     return urlList
 
 def main(urlList):
-    try:
-        # Iterate through urlList, extract text and datePosted from JSON
-        for job_link in urlList:
-            driver.get(job_link)
-            job_name = driver.find_element(By.CSS_SELECTOR, "div.posting-headline h2")
-            job_name_text = job_name.text
-            job_location = driver.find_element(By.CSS_SELECTOR, "div.location")
-            job_location_text = job_location.text
-            try:
-                script_tag = driver.find_element(By.XPATH, "//script[@type='application/ld+json']")
-                script_content = script_tag.get_attribute('innerHTML')
-                json_data = json.loads(script_content)
-                date_posted = json_data.get('datePosted')
-                current_date = datetime.now().date()
-                difference = current_date - datetime.strptime(date_posted, "%Y-%m-%d").date()
-                one_week = timedelta(weeks=1)
-                two_weeks = timedelta(weeks=2)
-                if difference <= one_week:
-                    color_code = color.GREEN
-                elif difference <= two_weeks:
-                    color_code = color.YELLOW
-                else:
-                    color_code = color.RED
-                print(f'\n>>> {job_name_text}: --- posted: {color_code}{date_posted}{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
-            except NoSuchElementException: 
-                print(f'\n>>> {job_name_text}: --- posted: {color.RED}No Post Date Available{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
-    finally:
+    if not urlList:
+        print("No Jobs here")
         print('------------------------')
         driver.quit()
+        return
+    else:
+        try:
+            # Iterate through urlList, extract text and datePosted from JSON
+            for job_link in urlList:
+                driver.get(job_link)
+                job_name = driver.find_element(By.CSS_SELECTOR, "div.posting-headline h2")
+                job_name_text = job_name.text
+                job_location = driver.find_element(By.CSS_SELECTOR, "div.location")
+                job_location_text = job_location.text
+                try:
+                    script_tag = driver.find_element(By.XPATH, "//script[@type='application/ld+json']")
+                    script_content = script_tag.get_attribute('innerHTML')
+                    json_data = json.loads(script_content)
+                    date_posted = json_data.get('datePosted')
+                    current_date = datetime.now().date()
+                    difference = current_date - datetime.strptime(date_posted, "%Y-%m-%d").date()
+                    one_week = timedelta(weeks=1)
+                    two_weeks = timedelta(weeks=2)
+                    if difference <= one_week:
+                        color_code = color.GREEN
+                    elif difference <= two_weeks:
+                        color_code = color.YELLOW
+                    else:
+                        color_code = color.RED
+                    print(f'\n>>> {job_name_text}: --- posted: {color_code}{date_posted}{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
+                except NoSuchElementException: 
+                    print(f'\n>>> {job_name_text}: --- posted: {color.RED}No Post Date Available{color.END} \n>>> Location: {job_location_text} \n>>> {job_link}')
+        finally:
+            print('------------------------')
+            driver.quit()
 
 careerPage = getCompany()
 start_selenium = time.time()
