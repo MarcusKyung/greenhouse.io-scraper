@@ -43,7 +43,9 @@
 - _Selenium_
 
 ## Description:
-Scrapes Greenhouse.io job careers pages and prints the date the job was posted. Examples:
+Scrapes Greenhouse.io job careers pages and prints the date the job was posted. 
+
+Greenhouse.io Examples:
 - https://boards.greenhouse.io/kallesgroup
 - https://boards.greenhouse.io/energysolutions
 - https://boards.greenhouse.io/arcadiacareers
@@ -51,16 +53,29 @@ Scrapes Greenhouse.io job careers pages and prints the date the job was posted. 
 - https://boards.greenhouse.io/1800contacts
 - https://boards.greenhouse.io/archrival
 - https://boards.greenhouse.io/colehourcoheninc/
+- https://boards.greenhouse.io/hopskipdrive
+- https://boards.greenhouse.io/level
+- https://boards.greenhouse.io/jetty
+
+Lever Examples:
 - https://jobs.lever.co/pigment
 - https://jobs.lever.co/coforma
 - https://jobs.lever.co/smarsh
+- https://jobs.lever.co/lever
+- https://jobs.lever.co/theathletic
+- https://jobs.lever.co/vrchat
+- https://jobs.lever.co/fanatics
+- https://jobs.lever.co/nielsen
+- https://jobs.lever.co/restaurant365
+- https://jobs.lever.co/olo
+- https://jobs.lever.co/wyld
 
 
 ## Setup/Installation Requirements:
 ### Run Locally:
-1. Clone this repository to a local machine with Python. Install Selenium
-2. Input Lever or Greenhouse.io careers page you wish to scrape. Must be a https://boards.greenhouse.io/XYZ careers page or https://jobs.lever.co/XYZ. Cannot be custom or embedded job listings. Users can add optional relevant query string filers formatted like the following ex: ?location=Melbourne . Lever offers the following query strings: Location Type, Location, Team, Work Type. Greenhouse does not offer filtering by query string. 
-3. Run using terminal
+1. Clone this repository to a local machine with Python. Install Selenium and Beautiful Soup. Alternatively, a VENV can be used. 
+2. Run program with python3 then the file you wish to run. Follow prompt to input Lever or Greenhouse.io careers page you wish to scrape. Must be a https://boards.greenhouse.io/XYZ careers page or https://jobs.lever.co/XYZ. Cannot be custom or embedded job listings. Lever offers the following query strings: Location Type, Location, Team, Work Type. Users can add optional relevant query string filers formatted like the following ex: ?location=Melbourne. Greenhouse does not offer filtering by query string. 
+3. Results are printed to terminal.
 
 ## Known Bugs/Issues:
 - Script doesn't work on employer site embedded greenhouse.io pages like this one: https://www.airship.com/company/careers/. In this instance a standard greenhouse.io page is available here: https://boards.greenhouse.io/airship, but this is not always the case
