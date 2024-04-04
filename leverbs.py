@@ -34,8 +34,7 @@ def getOpenings(jobBoard):
     jobLinks = soup.select('a.posting-title')
     for link in jobLinks:
         href = link['href']
-        if href:
-            urlList.append(href)
+        urlList.append(href)
     return urlList
 
 def main(urlList):
@@ -50,23 +49,19 @@ def main(urlList):
                 script_content = soup.find("script", {"type": "application/ld+json"}).string
                 json_data = json.loads(script_content)
                 date_posted = json_data.get('datePosted')
-                if date_posted is not None:
-                    current_date = datetime.now().date()
-                    difference = current_date - datetime.strptime(date_posted, "%Y-%m-%d").date()
-                    one_week = timedelta(weeks=1)
-                    two_weeks = timedelta(weeks=2)
-                    if difference <= one_week:
-                        color_code = color.GREEN
-                    elif difference <= two_weeks:
-                        color_code = color.YELLOW
-                    else:
-                        color_code = color.RED
-                    # Print Results
-                    print(f'\n>>> {job_name}: --- posted: {color_code}{date_posted}{color.END} \n>>> Location: {job_location} \n>>> {job_link}')
+                current_date = datetime.now().date()
+                difference = current_date - datetime.strptime(date_posted, "%Y-%m-%d").date()
+                one_week = timedelta(weeks=1)
+                two_weeks = timedelta(weeks=2)
+                if difference <= one_week:
+                    color_code = color.GREEN
+                elif difference <= two_weeks:
+                    color_code = color.YELLOW
                 else:
-                    print(f'\n>>> {job_name}: --- posted: {color_code}"No Date"{color.END} \n>>> Location: {job_location} \n>>> {job_link}')
+                    color_code = color.RED
+                print(f'\n>>> {job_name}: --- posted: {color_code}{date_posted}{color.END} \n>>> Location: {job_location} \n>>> {job_link}')
             except AttributeError: 
-                print(f'\n>>> {job_name}: --- posted: {color_code}No Post Date Available{color.END} \n>>> Location: {job_location} \n>>> {job_link}')
+                print(f'\n>>> {job_name}: --- posted: {color.RED}No Post Date Available{color.END} \n>>> Location: {job_location} \n>>> {job_link}')
     finally:
         print('------------------------')
 
@@ -76,4 +71,4 @@ getOpenings(careerPage)
 main(urlList)
 end_bs = time.time()
 bs_time = end_bs - start_bs
-print(f'Beautiful Soup version took {bs_time} seconds to execute.')
+print(f'Beautiful Soup Script took {bs_time} seconds to execute.')
